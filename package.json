@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "yarn webpack-dev-server --mode development"
+    "dev": "yarn webpack-dev-server --mode development",
+    "build": "yarn webpack --mode development"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
