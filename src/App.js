@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import hot from 'react-hot-loader';
+import { hot } from 'react-hot-loader';
 
 const App = () => (
 		<div className = "App">
