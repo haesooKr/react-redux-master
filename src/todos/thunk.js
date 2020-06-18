@@ -33,7 +33,7 @@ export const addTodoRequest = (text) => async (dispatch) => {
     const todo = await response.json();
     dispatch(createTodo(todo));
   } catch (e) {
-    disptach(displayAlert(e));
+    dispatch(displayAlert(e));
   }
 };
 
