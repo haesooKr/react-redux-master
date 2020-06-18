@@ -21,7 +21,7 @@ export const todos = (state = initialState, action) => {
       const { todo } = payload;
       return {
         ...state,
-        data: state.concat(todo)
+        data: state.data.concat(todo)
       }
       // concat은 state을 직접적으로 바꾸지않고 합친 새로운 값을 변환하기에 문제없음
       // state은 직접적으로 손대선 안되기때문에 concat을 사용한 것.
