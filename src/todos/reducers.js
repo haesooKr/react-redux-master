@@ -52,6 +52,12 @@ export const todos = (state = [], action) => {
         return todo;
       });
     }
+    case LOAD_TODOS_SUCCESS: {
+      const { todos } = payload;
+      return todos;
+    }
+    case LOAD_TODOS_IN_PROGRESS:
+    case LOAD_TODOS_FAILURE:
     default:
       return state;
     // state을 다시 리턴해주지않으면 리덕스는 undefined를 받고
