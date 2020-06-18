@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux'; 
-import { getTodos } from './selectors';
-import { addTodoRequest } from './thunk';
+import { connect } from "react-redux";
+import { getTodos } from "./selectors";
+import { addTodoRequest } from "./thunk";
 // connect = higher order component
-import './NewTodoForm.css';
+import "./NewTodoForm.css";
 
 const NewTodoForm = ({ todos, onCreatePressed }) => {
   const [inputValue, setInputValue] = useState("");
@@ -18,26 +18,33 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
           onChange={(e) => setInputValue(e.target.value)}
           type="text"
         />
-        <button onClick={() => {
-          const isDuplicateText = todos.some(todo => todo.text === inputValue);
-          if(!isDuplicateText){
-            onCreatePressed(inputValue);
-            setInputValue("");
-          }
-        }} className="new-todo-button">Create Todo</button>
+        <button
+          onClick={() => {
+            const isDuplicateText = todos.some(
+              (todo) => todo.text === inputValue
+            );
+            if (!isDuplicateText) {
+              onCreatePressed(inputValue);
+              setInputValue("");
+            }
+          }}
+          className="new-todo-button"
+        >
+          Create Todo
+        </button>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   todos: getTodos(state),
 });
 // state은 entire redux state을 넒겨준다
 // 여기서 필요한 piece만 골라내게하는게 mapStateToProps function
 
-const mapDispatchToProps = dispatch => ({
-  onCreatePressed: text => dispatch(addTodoRequest(text)),
+const mapDispatchToProps = (dispatch) => ({
+  onCreatePressed: (text) => dispatch(addTodoRequest(text)),
   // onCreatePressed는 임의로 정한 이름
 });
 // mapStateToProps와 다르게 entire redux state을 받는것이아니고
