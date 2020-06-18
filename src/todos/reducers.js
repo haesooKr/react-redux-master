@@ -30,18 +30,14 @@ export const todos = (state = [], action) => {
 
   switch (type) {
     case CREATE_TODO: {
-      const { text } = payload;
-      const newTodo = {
-        text,
-        isCompleted: false,
-      };
-      return state.concat(newTodo);
+      const { todo } = payload;
+      return state.concat(todo);
       // concat은 state을 직접적으로 바꾸지않고 합친 새로운 값을 변환하기에 문제없음
       // state은 직접적으로 손대선 안되기때문에 concat을 사용한 것.
     }
     case REMOVE_TODO: {
-      const { text } = payload;
-      return state.filter((todo) => todo.text !== text);
+      const { todo: todoToRemove } = payload;
+      return state.filter((todo) => todo.id !== todoToRemove.id);
     }
     case COMPLETE_TODO: {
       const { text } = payload;
