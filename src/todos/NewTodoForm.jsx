@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux'; 
+import { addTodoRequest } from './thunk';
 // connect = higher order component
-import { createTodo } from './actions';
 import './NewTodoForm.css';
 
 const NewTodoForm = ({ todos, onCreatePressed }) => {
@@ -36,7 +36,7 @@ const mapStateToProps = state => ({
 // 여기서 필요한 piece만 골라내게하는게 mapStateToProps function
 
 const mapDispatchToProps = dispatch => ({
-  onCreatePressed: text => dispatch(createTodo(text)),
+  onCreatePressed: text => dispatch(addTodoRequest(text)),
   // onCreatePressed는 임의로 정한 이름
 });
 // mapStateToProps와 다르게 entire redux state을 받는것이아니고
