@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from 'react-redux'; 
+import { getTodos } from './selectors';
 import { addTodoRequest } from './thunk';
 // connect = higher order component
 import './NewTodoForm.css';
@@ -30,7 +31,7 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
 };
 
 const mapStateToProps = state => ({
-  todos: state.todos,
+  todos: getTodos(state),
 });
 // state은 entire redux state을 넒겨준다
 // 여기서 필요한 piece만 골라내게하는게 mapStateToProps function
