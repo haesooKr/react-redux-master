@@ -3,6 +3,7 @@ import {
   loadTodosInProgess,
   loadTodosFailure,
   createTodo,
+  removeTodo
 } from "./actions";
 
 export const loadTodos = () => async (dispatch, getState) => {
