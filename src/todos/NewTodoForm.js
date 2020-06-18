@@ -1,24 +1,50 @@
 import React, { useState } from "react";
+import styled from 'styled-components';
 import { connect } from "react-redux";
 import { getTodos } from "./selectors";
 import { addTodoRequest } from "./thunk";
 // connect = higher order component
-import "./NewTodoForm.css";
+
+const FormContainer = styled.div`
+  position: relative;
+  display: flex;
+  text-align: center;
+  border: 1px solid gray;
+  padding: 0;
+`;
+
+const NewTodoInput = styled.input`
+  border: none;
+  padding: 5px 10px;
+  width: 100%;
+`;
+
+const CreateButton = styled.button`
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+`;
 
 const NewTodoForm = ({ todos, onCreatePressed }) => {
   const [inputValue, setInputValue] = useState("");
 
   return (
     <div>
-      <div className="new-todo-form">
-        <input
+      
+      <FormContainer>
+        <NewTodoInput
           className="new-todo-input"
           placeholder="Type your new todo here"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           type="text"
         />
-        <button
+        <CreateButton
           onClick={() => {
             const isDuplicateText = todos.some(
               (todo) => todo.text === inputValue
@@ -31,8 +57,8 @@ const NewTodoForm = ({ todos, onCreatePressed }) => {
           className="new-todo-button"
         >
           Create Todo
-        </button>
-      </div>
+        </CreateButton>
+      </FormContainer>
     </div>
   );
 };
