@@ -10,7 +10,7 @@ export const loadTodos = () => async (dispatch, getState) => {
   // we can recycle dispatch & get current State through thunk
   try {
     dispatch(loadTodosInProgess());
-    const response = await fetch("http://localhost:8080/todos-delay");
+    const response = await fetch("http://localhost:8080/todos");
     const todos = await response.json();
     dispatch(loadTodoSuccess(todos));
   } catch (e) {
