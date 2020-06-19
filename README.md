@@ -204,6 +204,59 @@ yarn add react react-dom
     export default TodoListItem;**
     ```
 
+### ******Better way to make actions & reducers******
+
+```bash
+yarn add redux-actions
+```
+
+```jsx
+import { createAction } from 'redux-actions';
+
+export const CREATE_TODO = "CREATE_TODO";
+export const createTodo = createAction(CREATE_TODO);
+
+export const REMOVE_TODO = "REMOVE_TODO";
+export const removeTodo = createAction(REMOVE_TODO);
+
+// 자동으로 payload 키에 파라미터로 받은 값을 넣어 객체를 만들어준다
+// Example Below
+increment(3)
+/*결과: 
+{
+  type: 'INCREMENT'
+  payload: 3
+}*/
+
+setColor({index: 5, color: "#fff"})
+/* 결과: 
+{
+  type: 'SET_COLOR',
+  payload: {
+  index: 5,
+  color: "#fff"
+}*/
+```
+
+```jsx
+import { handleActions } from "redux-actions";
+// handleActions를 import 한다
+// CREATE_TODO와 REMOVE_TODO는 따로 import 할 필요도없음
+
+export const todos = handleActions({
+  CREATE_TODO: (state, action) => {
+    return [ ...state, { text: action.payload, isCompleted: false }]
+  },
+  REMOVE_TODO: (state, action) => {
+    return state.filter(todo => todo.text !== action.payload);
+  }
+}, []);
+
+// state은 현재의 redux store state 상태이며
+// 첫번째 파라미터는 로직을 넣어준다
+// 두번째 파라미터는 redux store state의 기본값을 넣어준다
+```
+
 6. 이번에는 NewTodoForm.js를 만들어보자
 
     ```jsx
